@@ -1,27 +1,46 @@
 // closure = ฟังก์ชันที่ถูกประกาศอยู่ภายในอีกฟังก์ชันหนึ่งโดยฟังก์ชันด้านใน (inner function)
-//           สามารถเข้าถึงตัวแปร (variables) และ ขอบเขตการทำงาน (scope)
+//           สามารถเข้าถึงตัวแปร (ariables) และ ขอบเขตการทำงาน (scope)
 //           ของฟังก์ชันด้านนอก (outer function) ได้
 //           ช่วยให้สามารถสร้างตัวแปรแบบ private
 //           และเก็บสถานะ (state) ของข้อมูลไว้ได้
 //           ถูกใช้งานบ่อยใน Framework ของ JavaScript
 //           เช่น React, Vue และ Angular
 
-//Ex.1
+//=====================
+// EXAMPLE 1
+//=====================
+
+// Outer Function
 function outer() {
 
+    // ตัวแปรของ Outer Function
     let message = "Hello";
 
+    // Inner Function
     function inner() {
+
+        // Inner เข้าถึงตัวแปรของ Outer ได้
         console.log(message);
+
     }
 
-    inner();
-
+    // ส่ง Inner Function กลับ
+    return inner;
 }
 
-outer(); // Hello
+// เก็บฟังก์ชันที่ return มา
+const myFunction = outer();
 
-//Ex.2
+// แม้ outer() จะทำงานเสร็จแล้ว
+// แต่ inner() ยังจำตัวแปร message ได้
+myFunction();
+
+// ผลลัพธ์ = Hello
+
+//=====================
+// EXAMPLE 2
+//=====================
+
 function createCounter() {
 
     let count = 0;
@@ -48,7 +67,9 @@ counter.increment(); // 3
 
 console.log("The current count is " + counter.getCount()); // The current count is 3
 
-//Ex.3
+//=====================
+// EXAMPLE 3
+//=====================
 
 function createGame() {
 
